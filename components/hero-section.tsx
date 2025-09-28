@@ -357,7 +357,7 @@ export function HeroSection() {
               <Github className="h-6 w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/ved-rakholia"
+              href="https://in.linkedin.com/in/ved-rakholia-760767275"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-all focus-enhanced p-2 rounded-lg hover:scale-110 transform-gpu"

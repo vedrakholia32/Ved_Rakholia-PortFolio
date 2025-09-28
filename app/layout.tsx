@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 
@@ -56,9 +56,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  themeColor: "#0f172a",
-  colorScheme: "dark light",
-    generator: 'v0.app'
+  generator: 'v0.app'
+}
+
+export const viewport: Viewport = {
+  themeColor: "#020617",
+  colorScheme: "dark",
 }
 
 export default function RootLayout({
@@ -67,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
+    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable} antialiased`}>
       <body className="bg-background text-foreground font-sans">
         <div className="min-h-screen">{children}</div>
       </body>

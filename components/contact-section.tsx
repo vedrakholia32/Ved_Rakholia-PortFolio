@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, Phone, MapPin, Send } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import emailjs from '@emailjs/browser'
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -23,12 +24,21 @@ export function ContactSection() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const contactInfoRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLDivElement>(null)
   const footerRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
+
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    if (publicKey) {
+      emailjs.init(publicKey)
+    }
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -211,16 +221,68 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus('idle')
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Get EmailJS configuration from environment variables
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
+      // Debug logging (remove in production)
+      console.log('EmailJS Config:', {
+        serviceId: serviceId ? `${serviceId.substring(0, 10)}...` : 'missing',
+        templateId: templateId ? `${templateId.substring(0, 10)}...` : 'missing',
+        publicKey: publicKey ? `${publicKey.substring(0, 10)}...` : 'missing'
+      })
 
-    // In a real app, you'd send this to your backend
-    alert("Thank you for your message! I'll get back to you soon.")
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS configuration is missing. Please check your environment variables.')
+      }
+
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'vedrakholia525@gmail.com',
+        },
+        publicKey
+      )
+
+      console.log('Email sent successfully:', result)
+      setSubmitStatus('success')
+      
+      // Reset form on success
+      setFormData({ name: "", email: "", subject: "", message: "" })
+      
+      // Show success message for 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000)
+      
+    } catch (error) {
+      console.error('Email send failed:', error)
+      
+      // More detailed error handling
+      let errorMessage = 'Failed to send message. Please try again or email me directly.'
+      
+      if (error instanceof Error) {
+        if (error.message.includes('configuration is missing')) {
+          errorMessage = 'Email configuration error. Please contact me directly.'
+        } else if (error.message.includes('Invalid')) {
+          errorMessage = 'Invalid email configuration. Please contact me directly.'
+        }
+      }
+      
+      setSubmitStatus('error')
+      
+      // Show error message for 8 seconds
+      setTimeout(() => setSubmitStatus('idle'), 8000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -426,6 +488,19 @@ export function ContactSection() {
                     </>
                   )}
                 </Button>
+
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400">
+                    ✅ Message sent successfully! I'll get back to you soon.
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
+                    ❌ Failed to send message. Please try again or email me directly.
+                  </div>
+                )}
               </form>
             </Card>
           </div>

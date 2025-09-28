@@ -28,7 +28,7 @@ const projects = [
     technologies: ["Next.js", "TypeScript", "Convex", "LemonSqueezy"],
     links: {
       live: "https://www.code-nest.app",
-      github: "#",
+      github: "https://github.com/vedrakholia32/Code-Nest",
     },
     image: "/modern-code-editor-interface-with-dark-theme.jpg",
     featured: true,
@@ -47,8 +47,8 @@ const projects = [
     ],
     technologies: ["Next.js", "TypeScript", "OpenAI API", "VS Code API"],
     links: {
-      live: "https://errorsense.vercel.app",
-      github: "#",
+      live: "https://marketplace.visualstudio.com/items?itemName=VedRakholia.vedrakholia",
+      github: "https://github.com/vedrakholia32/Code_sense_",
     },
     image: "/vs-code-extension-interface-showing-error-explanat.jpg",
     featured: true,
@@ -68,7 +68,7 @@ const projects = [
     technologies: ["Express.js", "React", "Node.js", "MongoDB", "JWT"],
     links: {
       live: "https://www.advanced-auth.in/",
-      github: "#",
+      github: "https://github.com/vedrakholia32/Advanced-Auth-V2",
     },
     image: "/modern-authentication-dashboard-with-login-forms.jpg",
     featured: false,
@@ -419,12 +419,6 @@ export function ProjectsSection() {
               >
                 Get In Touch
                 <ExternalLink className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" className="border-border hover:bg-secondary bg-transparent" asChild>
-                <a href="mailto:vedrakholia525@gmail.com">
-                  Download Resume
-                  <Download className="ml-2 h-4 w-4" />
-                </a>
               </Button>
             </div>
           </Card>
