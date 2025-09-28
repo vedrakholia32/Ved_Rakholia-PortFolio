@@ -327,7 +327,7 @@ export function ExperienceSection() {
                   <div className="flex items-center gap-2">
                     <span className="text-primary">🔗</span>
                     <a
-                      href="https://linkedin.com/in/ved-rakholia"
+                      href="https://in.linkedin.com/in/ved-rakholia-760767275"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-primary transition-colors flex items-center gap-1"
