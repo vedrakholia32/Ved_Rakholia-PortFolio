@@ -198,62 +198,64 @@ export function ExperienceSection() {
   }, [])
 
   return (
-    <section id="experience" ref={sectionRef} className="py-20 px-6 bg-secondary/20 relative overflow-hidden">
-      <div ref={backgroundRef} className="absolute inset-0 pointer-events-none">
-        <div className="experience-float absolute top-24 left-12 w-32 h-32 bg-gradient-to-br from-indigo-500/8 to-purple-500/8 rounded-3xl blur-xl"></div>
-        <div className="experience-float absolute top-48 right-16 w-40 h-40 bg-gradient-to-br from-emerald-500/8 to-teal-500/8 rounded-full blur-xl"></div>
-        <div className="experience-float absolute bottom-32 left-1/4 w-28 h-28 bg-gradient-to-br from-orange-500/8 to-red-500/8 rounded-2xl blur-xl"></div>
-        <div className="experience-float absolute bottom-48 right-1/3 w-36 h-36 bg-gradient-to-br from-cyan-500/8 to-blue-500/8 rounded-full blur-xl"></div>
-        <div className="experience-float absolute top-1/3 right-8 w-24 h-24 bg-gradient-to-br from-pink-500/8 to-rose-500/8 rounded-lg blur-xl"></div>
+    <section id="experience" ref={sectionRef} className="py-16 sm:py-20 px-4 sm:px-6 bg-secondary/20 relative overflow-hidden">
+      <div ref={backgroundRef} className="absolute inset-0 pointer-events-none hidden sm:block">
+        <div className="experience-float absolute top-24 left-12 w-24 sm:w-32 h-24 sm:h-32 bg-gradient-to-br from-indigo-500/8 to-purple-500/8 rounded-3xl blur-xl"></div>
+        <div className="experience-float absolute top-48 right-16 w-32 sm:w-40 h-32 sm:h-40 bg-gradient-to-br from-emerald-500/8 to-teal-500/8 rounded-full blur-xl"></div>
+        <div className="experience-float absolute bottom-32 left-1/4 w-20 sm:w-28 h-20 sm:h-28 bg-gradient-to-br from-orange-500/8 to-red-500/8 rounded-2xl blur-xl"></div>
+        <div className="experience-float absolute bottom-48 right-1/3 w-28 sm:w-36 h-28 sm:h-36 bg-gradient-to-br from-cyan-500/8 to-blue-500/8 rounded-full blur-xl"></div>
+        <div className="experience-float absolute top-1/3 right-8 w-18 sm:w-24 h-18 sm:h-24 bg-gradient-to-br from-pink-500/8 to-rose-500/8 rounded-lg blur-xl"></div>
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold mb-6 transform-gpu">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 ref={titleRef} className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 transform-gpu px-4">
             <span className="gradient-text">Experience</span> & Education
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed px-4">
             My professional journey in software engineering and continuous learning in computer science.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Experience */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold text-foreground">Professional Experience</h3>
+          <div className="space-y-6 sm:space-y-8">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground px-4 lg:px-0">Professional Experience</h3>
 
-            <div ref={experienceRef} className="space-y-8">
+            <div ref={experienceRef} className="space-y-6 sm:space-y-8 px-4 lg:px-0">
               {experiences.map((exp, index) => (
                 <Card
                   key={index}
-                  className="p-6 glass-effect border-border/50 hover:border-primary/20 transition-all duration-300 transform-gpu"
+                  className="p-4 sm:p-6 glass-effect border-border/50 hover:border-primary/20 transition-all duration-300 transform-gpu"
                 >
-                  <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                      <div>
-                        <h4 className="text-xl font-semibold text-foreground">{exp.title}</h4>
-                        <p className="text-primary font-medium">{exp.company}</p>
-                      </div>
-                      <Badge variant="secondary" className="w-fit">
-                        {exp.type}
-                      </Badge>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {exp.period}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        {exp.location}
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-semibold text-foreground leading-tight">{exp.title}</h4>
+                          <p className="text-primary font-medium text-sm sm:text-base">{exp.company}</p>
+                        </div>
+                        <Badge variant="secondary" className="w-fit text-xs">
+                          {exp.type}
+                        </Badge>
                       </div>
                     </div>
 
-                    <ul className="space-y-2 text-muted-foreground">
+                    <div className="flex flex-col gap-2 text-xs sm:text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span className="leading-tight">{exp.period}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span className="leading-tight">{exp.location}</span>
+                      </div>
+                    </div>
+
+                    <ul className="space-y-2 text-sm sm:text-base text-muted-foreground">
                       {exp.description.map((item, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <span className="text-primary mt-2 text-xs">▪</span>
+                          <span className="text-primary mt-1 text-xs">▪</span>
                           <span className="leading-relaxed">{item}</span>
                         </li>
                       ))}
@@ -261,7 +263,7 @@ export function ExperienceSection() {
 
                     <div className="flex flex-wrap gap-2 pt-2">
                       {exp.technologies.map((tech) => (
-                        <span key={tech} className="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-medium">
+                        <span key={tech} className="px-2 py-1 bg-primary/10 text-primary rounded text-xs font-medium min-h-[28px] flex items-center">
                           {tech}
                         </span>
                       ))}
@@ -273,35 +275,37 @@ export function ExperienceSection() {
           </div>
 
           {/* Education */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold text-foreground">Education</h3>
+          <div className="space-y-6 sm:space-y-8">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground px-4 lg:px-0">Education</h3>
 
-            <div ref={educationRef} className="space-y-8">
+            <div ref={educationRef} className="space-y-6 sm:space-y-8 px-4 lg:px-0">
               {education.map((edu, index) => (
                 <Card
                   key={index}
-                  className="p-6 glass-effect border-border/50 hover:border-primary/20 transition-all duration-300 transform-gpu"
+                  className="p-4 sm:p-6 glass-effect border-border/50 hover:border-primary/20 transition-all duration-300 transform-gpu"
                 >
-                  <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                      <div>
-                        <h4 className="text-xl font-semibold text-foreground">{edu.degree}</h4>
-                        {edu.minor && <p className="text-primary font-medium">{edu.minor}</p>}
-                        <p className="text-muted-foreground">{edu.school}</p>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-semibold text-foreground leading-tight">{edu.degree}</h4>
+                          {edu.minor && <p className="text-primary font-medium text-sm sm:text-base">{edu.minor}</p>}
+                          <p className="text-muted-foreground text-sm sm:text-base">{edu.school}</p>
+                        </div>
+                        <Badge variant={edu.status === "In Progress" ? "default" : "secondary"} className="w-fit text-xs">
+                          {edu.status}
+                        </Badge>
                       </div>
-                      <Badge variant={edu.status === "In Progress" ? "default" : "secondary"} className="w-fit">
-                        {edu.status}
-                      </Badge>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
+                    <div className="flex flex-col gap-2 text-xs sm:text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {edu.period}
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span className="leading-tight">{edu.period}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        {edu.location}
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span className="leading-tight">{edu.location}</span>
                       </div>
                     </div>
                   </div>
@@ -309,12 +313,12 @@ export function ExperienceSection() {
               ))}
 
               {/* Contact Info Card */}
-              <Card className="p-6 glass-effect border-border/50 transform-gpu">
-                <h4 className="text-lg font-semibold text-foreground mb-4">Contact Information</h4>
-                <div className="space-y-2 text-muted-foreground">
+              <Card className="p-4 sm:p-6 glass-effect border-border/50 transform-gpu">
+                <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Contact Information</h4>
+                <div className="space-y-2 text-sm sm:text-base text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <span className="text-primary">📧</span>
-                    <a href="mailto:vedrakholia525@gmail.com" className="hover:text-primary transition-colors">
+                    <a href="mailto:vedrakholia525@gmail.com" className="hover:text-primary transition-colors break-all">
                       vedrakholia525@gmail.com
                     </a>
                   </div>
@@ -330,10 +334,10 @@ export function ExperienceSection() {
                       href="https://in.linkedin.com/in/ved-rakholia-760767275"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-primary transition-colors flex items-center gap-1"
+                      className="hover:text-primary transition-colors flex items-center gap-1 break-words"
                     >
-                      LinkedIn Profile
-                      <ExternalLink className="h-3 w-3" />
+                      <span>LinkedIn Profile</span>
+                      <ExternalLink className="h-3 w-3 flex-shrink-0" />
                     </a>
                   </div>
                 </div>

@@ -50,16 +50,16 @@ export function Navigation() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-effect" : ""}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold gradient-text">Ved Rakholia</div>
+          <div className="text-lg sm:text-xl font-bold gradient-text">Ved Rakholia</div>
 
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-sm font-medium transition-colors hover:text-primary focus-enhanced p-2 rounded-lg ${
                   activeSection === item.href.substring(1) ? "text-primary" : "text-muted-foreground"
                 }`}
               >
@@ -68,29 +68,30 @@ export function Navigation() {
             ))}
           </div>
 
-          <Button onClick={() => scrollToSection("#contact")} className="hidden md:flex bg-primary hover:bg-primary/90">
+          <Button onClick={() => scrollToSection("#contact")} className="hidden md:flex bg-primary hover:bg-primary/90 focus-enhanced">
             Get In Touch
           </Button>
 
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden"
+            className="md:hidden min-h-[44px] min-w-[44px] p-2 focus-enhanced"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border/20">
-            <div className="flex flex-col space-y-3 pt-4">
+          <div className="md:hidden mt-4 pb-4 border-t border-border/20 animate-slide-in-down">
+            <div className="flex flex-col space-y-1 pt-4">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`text-left text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === item.href.substring(1) ? "text-primary" : "text-muted-foreground"
+                  className={`text-left text-base font-medium transition-colors hover:text-primary focus-enhanced p-3 rounded-lg min-h-[44px] ${
+                    activeSection === item.href.substring(1) ? "text-primary bg-primary/10" : "text-muted-foreground hover:bg-secondary/20"
                   }`}
                 >
                   {item.name}
@@ -98,7 +99,7 @@ export function Navigation() {
               ))}
               <Button
                 onClick={() => scrollToSection("#contact")}
-                className="mt-3 bg-primary hover:bg-primary/90 w-full"
+                className="mt-4 w-full bg-primary hover:bg-primary/90 min-h-[44px] focus-enhanced"
               >
                 Get In Touch
               </Button>

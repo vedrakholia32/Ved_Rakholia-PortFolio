@@ -172,22 +172,22 @@ export function AboutSection() {
   }, [])
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 px-6 relative overflow-hidden">
-      <div ref={floatingElementsRef} className="absolute inset-0 pointer-events-none">
-        <div className="floating-element absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 rounded-full blur-xl"></div>
-        <div className="floating-element absolute top-40 right-20 w-32 h-32 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-lg blur-xl"></div>
-        <div className="floating-element absolute bottom-40 left-1/4 w-16 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-xl"></div>
-        <div className="floating-element absolute bottom-20 right-1/3 w-24 h-24 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg blur-xl"></div>
+    <section id="about" ref={sectionRef} className="py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden">
+      <div ref={floatingElementsRef} className="absolute inset-0 pointer-events-none hidden sm:block">
+        <div className="floating-element absolute top-20 left-10 w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 rounded-full blur-xl"></div>
+        <div className="floating-element absolute top-40 right-20 w-24 sm:w-32 h-24 sm:h-32 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-lg blur-xl"></div>
+        <div className="floating-element absolute bottom-40 left-1/4 w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-xl"></div>
+        <div className="floating-element absolute bottom-20 right-1/3 w-18 sm:w-24 h-18 sm:h-24 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg blur-xl"></div>
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold mb-6 transform-gpu">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 ref={titleRef} className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 transform-gpu px-4">
             About <span className="gradient-text">Me</span>
           </h2>
           <p
             ref={subtitleRef}
-            className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed transform-gpu"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed transform-gpu px-4"
           >
             I'm a passionate software engineer currently pursuing my Bachelor's in Computer Science at Kennesaw State
             University. I specialize in building innovative web applications and optimizing AI-generated code to create
@@ -195,12 +195,12 @@ export function AboutSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
           {/* Personal Story */}
-          <div className="space-y-6">
-            <Card ref={cardRef} className="p-8 glass-effect border-border/50 transform-gpu">
-              <h3 className="text-2xl font-semibold mb-4 text-foreground">My Journey</h3>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+          <div className="space-y-4 sm:space-y-6">
+            <Card ref={cardRef} className="p-6 sm:p-8 glass-effect border-border/50 transform-gpu">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">My Journey</h3>
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
                 <p>
                   Currently working as an <strong className="text-foreground">AI Software Optimization Engineer</strong>{" "}
                   at Outlier, where I review and optimize AI-generated code across React, Node.js, Next.js, and MERN
@@ -221,19 +221,19 @@ export function AboutSection() {
 
           {/* Skills Grid */}
           <div>
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">Technical Skills</h3>
-            <div ref={skillsRef} className="grid gap-4">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground px-4 lg:px-0">Technical Skills</h3>
+            <div ref={skillsRef} className="grid gap-3 sm:gap-4 px-4 lg:px-0">
               {skills.map((skillGroup, index) => (
                 <Card
                   key={skillGroup.category}
-                  className="p-6 glass-effect border-border/50 hover:border-primary/20 transition-colors transform-gpu"
+                  className="p-4 sm:p-6 glass-effect border-border/50 hover:border-primary/20 transition-colors transform-gpu"
                 >
-                  <h4 className="font-semibold text-primary mb-3">{skillGroup.category}</h4>
+                  <h4 className="font-semibold text-primary mb-2 sm:mb-3 text-sm sm:text-base">{skillGroup.category}</h4>
                   <div className="flex flex-wrap gap-2">
                     {skillGroup.items.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 bg-secondary/50 text-secondary-foreground rounded-full text-sm font-medium"
+                        className="px-2 sm:px-3 py-1 bg-secondary/50 text-secondary-foreground rounded-full text-xs sm:text-sm font-medium min-h-[32px] flex items-center"
                       >
                         {skill}
                       </span>
@@ -246,22 +246,22 @@ export function AboutSection() {
         </div>
 
         {/* Stats */}
-        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16 px-4">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">35%</div>
-            <div className="text-sm text-muted-foreground">Runtime Error Reduction</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">35%</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Runtime Error Reduction</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">70+</div>
-            <div className="text-sm text-muted-foreground">Weekly Code Reviews</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">70+</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Weekly Code Reviews</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">10+</div>
-            <div className="text-sm text-muted-foreground">Students Mentored</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">10+</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Students Mentored</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">3+</div>
-            <div className="text-sm text-muted-foreground">Major Projects</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">3+</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Major Projects</div>
           </div>
         </div>
       </div>

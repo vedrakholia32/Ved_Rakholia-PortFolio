@@ -1,0 +1,692 @@
+@import "tailwindcss";@import "tailwindcss";
+
+@import "tw-animate-css";@import "tw-animate-css";
+
+
+
+@custom-variant dark (&:is(.dark *));@custom-variant dark (&:is(.dark *));
+
+
+
+:root {:root {
+
+  /* Default to dark theme values */  /* Default to dark theme values */
+
+  --background: oklch(0.08 0 0);  --background: oklch(0.08 0 0);
+
+  --foreground: oklch(0.98 0 0);  --foreground: oklch(0.98 0 0);
+
+  --card: oklch(0.1 0 0);  --card: oklch(0.1 0 0);
+
+  --card-foreground: oklch(0.98 0 0);  --card-foreground: oklch(0.98 0 0);
+
+  --popover: oklch(0.08 0 0);  --popover: oklch(0.08 0 0);
+
+  --popover-foreground: oklch(0.98 0 0);  --popover-foreground: oklch(0.98 0 0);
+
+  --primary: oklch(0.7 0.15 254);  --primary: oklch(0.7 0.15 254);
+
+  --primary-foreground: oklch(0.1 0 0);  --primary-foreground: oklch(0.1 0 0);
+
+  --secondary: oklch(0.12 0 0);  --secondary: oklch(0.12 0 0);
+
+  --secondary-foreground: oklch(0.98 0 0);  --secondary-foreground: oklch(0.98 0 0);
+
+  --muted: oklch(0.12 0 0);  --muted: oklch(0.12 0 0);
+
+  --muted-foreground: oklch(0.65 0 0);  --muted-foreground: oklch(0.65 0 0);
+
+  --accent: oklch(0.12 0 0);  --accent: oklch(0.12 0 0);
+
+  --accent-foreground: oklch(0.98 0 0);  --accent-foreground: oklch(0.98 0 0);
+
+  --destructive: oklch(0.6 0.2 25);  --destructive: oklch(0.6 0.2 25);
+
+  --destructive-foreground: oklch(0.98 0 0);  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.15 0 0);  --border: oklch(0.15 0 0);
+
+  --input: oklch(0.15 0 0);  --input: oklch(0.15 0 0);
+
+  --ring: oklch(0.7 0.15 254);  --ring: oklch(0.7 0.15 254);
+
+  --chart-1: oklch(0.7 0.15 254);  --chart-1: oklch(0.7 0.15 254);
+
+  --chart-2: oklch(0.65 0.2 180);  --chart-2: oklch(0.65 0.2 180);
+
+  --chart-3: oklch(0.6 0.25 60);  --chart-3: oklch(0.6 0.25 60);
+
+  --chart-4: oklch(0.75 0.1 300);  --chart-4: oklch(0.75 0.1 300);
+
+  --chart-5: oklch(0.55 0.3 30);  --chart-5: oklch(0.55 0.3 30);
+
+  --radius: 0.625rem;}
+
+}
+
+/* Enhanced animations and effects */
+
+/* Enhanced animations and effects */@keyframes gradient-x {
+
+@keyframes gradient-x {  0%, 100% {
+
+  0%, 100% {    background-size: 200% 200%;
+
+    background-size: 200% 200%;    background-position: left center;
+
+    background-position: left center;  }
+
+  }  50% {
+
+  50% {    background-size: 200% 200%;
+
+    background-size: 200% 200%;    background-position: right center;
+
+    background-position: right center;  }
+
+  }}
+
+}
+
+@keyframes typewriter {
+
+@keyframes typewriter {  from {
+
+  from {    width: 0;
+
+    width: 0;  }
+
+  }  to {
+
+  to {    width: 100%;
+
+    width: 100%;  }
+
+  }}
+
+}
+
+@keyframes fadeInUp {
+
+@keyframes fadeInUp {  from {
+
+  from {    opacity: 0;
+
+    opacity: 0;    transform: translateY(20px);
+
+    transform: translateY(20px);  }
+
+  }  to {
+
+  to {    opacity: 1;
+
+    opacity: 1;    transform: translateY(0);
+
+    transform: translateY(0);  }
+
+  }}
+
+}
+
+.animate-gradient-x {
+
+.animate-gradient-x {  animation: gradient-x 3s ease infinite;
+
+  animation: gradient-x 3s ease infinite;}
+
+}
+
+/* Typing animation for terminal */
+
+/* Typing animation for terminal */.typing-text {
+
+.typing-text {  opacity: 0;
+
+  opacity: 0;  animation: fadeInUp 0.8s ease-out forwards;
+
+  animation: fadeInUp 0.8s ease-out forwards;}
+
+}
+
+.typing-text.delay-1000 {
+
+.typing-text.delay-1000 {  animation-delay: 1s;
+
+  animation-delay: 1s;}
+
+}
+
+.typing-text.delay-2000 {
+
+.typing-text.delay-2000 {  animation-delay: 2s;
+
+  animation-delay: 2s;}
+
+}
+
+.typing-text.delay-3000 {
+
+.typing-text.delay-3000 {  animation-delay: 3s;
+
+  animation-delay: 3s;}
+
+}
+
+.typing-text.delay-4000 {
+
+.typing-text.delay-4000 {  animation-delay: 4s;
+
+  animation-delay: 4s;}
+
+}
+
+.typing-text::after {
+
+.typing-text::after {  content: attr(data-text);
+
+  content: attr(data-text);  overflow: hidden;
+
+  overflow: hidden;  white-space: nowrap;
+
+  white-space: nowrap;  display: inline-block;
+
+  display: inline-block;  animation: typewriter 1.5s steps(40, end) forwards;
+
+  animation: typewriter 1.5s steps(40, end) forwards;  animation-delay: inherit;
+
+  animation-delay: inherit;}
+
+}
+
+/* Enhanced glassmorphism */
+
+/* Enhanced glassmorphism */.backdrop-blur-sm {
+
+.backdrop-blur-sm {  backdrop-filter: blur(8px);
+
+  backdrop-filter: blur(8px);  -webkit-backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);}
+
+}
+
+/* Enhanced floating elements */
+
+/* Enhanced floating elements */.floating-element {
+
+.floating-element {  animation: float 6s ease-in-out infinite;
+
+  animation: float 6s ease-in-out infinite;}
+
+}
+
+.floating-element:nth-child(2) {
+
+.floating-element:nth-child(2) {  animation-delay: -2s;
+
+  animation-delay: -2s;}
+
+}
+
+.floating-element:nth-child(3) {
+
+.floating-element:nth-child(3) {  animation-delay: -4s;
+
+  animation-delay: -4s;}
+
+}
+
+@keyframes float {
+
+@keyframes float {  0%, 100% {
+
+  0%, 100% {    transform: translateY(0px) rotate(0deg);
+
+    transform: translateY(0px) rotate(0deg);  }
+
+  }  33% {
+
+  33% {    transform: translateY(-10px) rotate(1deg);
+
+    transform: translateY(-10px) rotate(1deg);  }
+
+  }  66% {
+
+  66% {    transform: translateY(-5px) rotate(-1deg);
+
+    transform: translateY(-5px) rotate(-1deg);  }
+
+  }}mary-foreground: oklch(0.08 0 0);
+
+}  --secondary: oklch(0.15 0 0);
+
+  --secondary-foreground: oklch(0.98 0 0);
+
+@theme inline {  --muted: oklch(0.15 0 0);
+
+  --default-transition-duration: 200ms;  --muted-foreground: oklch(0.65 0 0);
+
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);  --accent: oklch(0.15 0 0);
+
+  --default-font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";  --accent-foreground: oklch(0.98 0 0);
+
+  --default-font-feature-settings: "cv11", "ss01";  --destructive: oklch(0.6 0.25 25);
+
+  --default-font-variation-settings: "opsz" 32;  --destructive-foreground: oklch(0.98 0 0);
+
+  --default-mono-font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;  --border: oklch(0.2 0 0);
+
+  --default-mono-font-feature-settings: normal;  --input: oklch(0.15 0 0);
+
+  --default-mono-font-feature-settings: normal;
+  --default-mono-font-variation-settings: normal;
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --color-*: initial;
+  --*: initial;
+}
+
+* {
+  @apply border-border outline-ring/50;
+}
+
+body {
+  @apply bg-background text-foreground;
+}
+
+.responsive-text-xs {
+  @apply text-xs sm:text-sm;
+}
+
+.responsive-text-sm {
+  @apply text-sm sm:text-base;
+}
+
+.responsive-text-base {
+  @apply text-base sm:text-lg;
+}
+
+.responsive-text-lg {
+  @apply text-lg sm:text-xl;
+.responsive-text-xl {
+  @apply text-xl sm:text-2xl;
+}
+
+.responsive-text-2xl {
+  @apply text-2xl sm:text-3xl;
+}
+
+.responsive-text-3xl {
+  @apply text-3xl sm:text-4xl md:text-5xl;
+}
+
+.responsive-text-4xl {
+  @apply text-4xl sm:text-5xl md:text-6xl;
+}
+
+.responsive-spacing-sm {
+  @apply mt-2 sm:mt-3;
+}
+
+.responsive-spacing-md {
+  @apply mt-4 sm:mt-6;
+}
+
+.responsive-spacing-lg {
+  @apply mt-6 sm:mt-8;
+}
+
+  @apply mt-6 sm:mt-8;  --color-primary-foreground: var(--primary-foreground);
+
+}  --color-secondary: var(--secondary);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+
+.responsive-grid-2 {  --color-muted: var(--muted);
+
+  @apply grid grid-cols-1 md:grid-cols-2;  --color-muted-foreground: var(--muted-foreground);
+
+}  --color-accent: var(--accent);
+
+  --color-accent-foreground: var(--accent-foreground);
+
+.responsive-grid-3 {  --color-destructive: var(--destructive);
+
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;  --color-destructive-foreground: var(--destructive-foreground);
+
+}  --color-border: var(--border);
+
+  --color-input: var(--input);
+
+.responsive-grid-4 {  --color-ring: var(--ring);
+
+  @apply grid grid-cols-2 md:grid-cols-4;  --color-chart-1: var(--chart-1);
+
+}  --color-chart-2: var(--chart-2);
+
+  --color-chart-3: var(--chart-3);
+
+/* Enhanced focus states for accessibility */  --color-chart-4: var(--chart-4);
+
+.focus-visible:focus-visible {  --color-chart-5: var(--chart-5);
+
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;  --radius-sm: calc(var(--radius) - 4px);
+
+}  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for 3D elements and animations */
+.gradient-text {
+  background: linear-gradient(135deg, rgb(96 165 250), rgb(34 197 94));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(15 23 42);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(51 65 85);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(71 85 105);
+}
+
+/* Custom animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+/* Responsive text utilities */
+.text-responsive-xs {
+  @apply text-xs sm:text-sm;
+}
+
+.text-responsive-sm {
+  @apply text-sm sm:text-base;
+}
+
+.text-responsive-base {
+  @apply text-base sm:text-lg;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl;
+}
+
+.text-responsive-2xl {
+  @apply text-2xl sm:text-3xl;
+}
+
+.text-responsive-3xl {
+  @apply text-3xl sm:text-4xl md:text-5xl;
+}
+
+.text-responsive-4xl {
+  @apply text-4xl sm:text-5xl md:text-6xl;
+}
+
+/* Responsive spacing utilities */
+.space-responsive-sm > * + * {
+  @apply mt-2 sm:mt-3;
+}
+
+.space-responsive-md > * + * {
+  @apply mt-4 sm:mt-6;
+}
+
+.space-responsive-lg > * + * {
+  @apply mt-6 sm:mt-8;
+}
+
+/* Mobile-first responsive grid */
+.grid-responsive-1-2 {
+  @apply grid grid-cols-1 md:grid-cols-2;
+}
+
+.grid-responsive-1-2-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.grid-responsive-2-4 {
+  @apply grid grid-cols-2 md:grid-cols-4;
+}
+
+/* Enhanced mobile touch targets */
+@media (max-width: 768px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improved focus states for accessibility */
+.focus-enhanced:focus {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-effect {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid currentColor;
+  }
+
+  .gradient-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    color: currentColor;
+    font-weight: bold;
+  }
+}
+
+/* Enhanced Aesthetic Animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 4s ease infinite;
+}
+
+/* Enhanced Glassmorphism Effect */
+.glass-effect {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* Enhanced Focus States */
+.focus-enhanced:focus {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px hsl(var(--ring) / 0.2);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced Button Hover Effects */
+.btn-enhanced {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-enhanced:hover::before {
+  left: 100%;
+}
