@@ -181,6 +181,26 @@ export function AboutSection() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
+        {/* Philosophy Banner - Inspired by Max Milkin */}
+        <div className="mb-16 sm:mb-20 text-center px-4">
+          <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-primary/5 via-background to-secondary/5 border border-border/30">
+            <div className="space-y-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-muted-foreground uppercase">
+                Philosophy
+              </h3>
+              <p className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  Clarity is Power.
+                </span>
+              </p>
+              <p className="text-lg sm:text-xl text-muted-foreground/80 leading-relaxed max-w-2xl mx-auto font-light">
+                In code and in life, I strive to keep only what matters and remove the rest. 
+                What stays is stronger, clearer, and more meaningful.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center mb-12 sm:mb-16">
           <h2 ref={titleRef} className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 transform-gpu px-4">
             About <span className="gradient-text">Me</span>

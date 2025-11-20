@@ -22,6 +22,7 @@ export function ContactSection() {
     email: "",
     subject: "",
     message: "",
+    budget: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -248,6 +249,7 @@ export function ContactSection() {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
+          budget: formData.budget || 'Not specified',
           to_email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'vedrakholia525@gmail.com',
         },
         publicKey
@@ -257,7 +259,7 @@ export function ContactSection() {
       setSubmitStatus('success')
       
       // Reset form on success
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      setFormData({ name: "", email: "", subject: "", message: "", budget: "" })
       
       // Show success message for 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000)
@@ -456,6 +458,33 @@ export function ContactSection() {
                     className="bg-background/50 border-border focus:border-primary min-h-[44px] text-sm sm:text-base"
                     placeholder="What's this about?"
                   />
+                </div>
+
+                {/* Budget Selector - Inspired by Max Milkin */}
+                <div>
+                  <label htmlFor="budget" className="block text-xs sm:text-sm font-medium text-foreground mb-2">
+                    Project Budget (Optional)
+                  </label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { value: "5k-10k", label: "$5K - $10K" },
+                      { value: "10k-20k", label: "$10K - $20K" },
+                      { value: "20k+", label: "$20K+" },
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setFormData((prev) => ({ ...prev, budget: option.value }))}
+                        className={`p-3 rounded-lg border-2 transition-all duration-300 text-sm font-medium ${
+                          formData.budget === option.value
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border/50 hover:border-primary/50 text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div>

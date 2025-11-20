@@ -162,7 +162,6 @@ export function HeroSection() {
     gsap.set(".floating-element", {
       opacity: 0,
       scale: 0.8,
-      rotation: () => gsap.utils.random(-180, 180),
     })
 
     // Animate elements in sequence
@@ -206,7 +205,6 @@ export function HeroSection() {
         duration: 1.2,
         opacity: 1,
         scale: 1,
-        rotation: 0,
         ease: "back.out(1.7)",
         stagger: 0.1,
       }, "-=0.8")
@@ -215,7 +213,6 @@ export function HeroSection() {
     gsap.to(".floating-element", {
       y: "random(-20, 20)",
       x: "random(-10, 10)",
-      rotation: "random(-5, 5)",
       duration: "random(3, 6)",
       ease: "sine.inOut",
       repeat: -1,
@@ -236,261 +233,197 @@ export function HeroSection() {
         duration: 0.8,
         x: xPos * 20,
         y: yPos * 15,
-        rotation: xPos * 5,
+        ease: "power2.out",
+      })
+    }
+
+    // Reset position when mouse leaves the window
+    const handleMouseLeave = () => {
+      gsap.to(".floating-element", {
+        duration: 1.2,
+        x: 0,
+        y: 0,
         ease: "power2.out",
       })
     }
 
     window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mouseleave", handleMouseLeave)
       tl.kill()
     }
   }, [])
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Enhanced Background with Multiple Layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-secondary/10"></div>
+      {/* Minimal Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/98 to-primary/5"></div>
       
-      {/* Animated Mesh Background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 25%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)`,
-        }}></div>
-      </div>
-
-      {/* Animated background canvas */}
+      {/* Subtle Particle Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none will-change-transform opacity-40"
+        className="absolute inset-0 pointer-events-none will-change-transform opacity-20"
         style={{ background: "transparent" }}
       />
 
-      {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen py-20">
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-20 items-center min-h-screen py-16">
           
-          {/* Left Content - Enhanced Typography */}
-          <div ref={heroContentRef} className="space-y-10 lg:pr-12">
-            
-            {/* Status Badge - More refined */}
-            <div className="hero-badge inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full border border-primary/20 backdrop-blur-sm shadow-lg">
-              <div className="relative">
-                <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
-                <div className="absolute inset-0 w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></div>
-              </div>
-              <span className="text-sm font-semibold text-primary tracking-wide">Available for opportunities</span>
-            </div>
+          {/* Left Content - Minimalist */}
+          <div ref={heroContentRef} className="space-y-12">
+          
 
-            {/* Main Headline - Enhanced Typography */}
-            <div className="space-y-6">
-              <h1 className="hero-title relative">
-                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-none">
-                  <span className="text-foreground">Creative</span>
+            {/* Bold, Clean Typography */}
+            <div className="space-y-8">
+              <h1 className="hero-title">
+                <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tight">
+                  <span className="text-foreground">Ved</span>
                 </span>
-                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-none mt-2">
-                  <span className="bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient-x">
-                    Developer
+                <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tight mt-2">
+                  <span className="bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                    Rakholia
                   </span>
                 </span>
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-sm"></div>
-                <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-sm"></div>
               </h1>
               
-              <h2 className="hero-subtitle text-2xl sm:text-3xl lg:text-4xl text-muted-foreground font-light tracking-wide">
-                & AI Optimization Specialist
+              <h2 className="hero-subtitle text-xl sm:text-2xl lg:text-3xl text-muted-foreground font-light tracking-wide max-w-lg">
+                Software Engineer & AI Specialist
               </h2>
             </div>
 
-            {/* Enhanced Description */}
-            <p className="hero-description text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl font-light">
-              I craft exceptional digital experiences through the perfect blend of 
-              <span className="text-primary font-medium"> innovative design</span> and 
-              <span className="text-primary font-medium"> robust engineering</span>. 
-              Currently optimizing AI-generated code and building next-generation SaaS solutions.
+            {/* Philosophy Quote - Inspired by minimalist design */}
+            <div className="hero-description space-y-4">
+              <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-md font-light">
+                Building exceptional digital experiences with modern technology.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground/60 leading-relaxed max-w-md font-light italic border-l-2 border-primary/30 pl-4">
+                "Code is not just about function—it's about clarity, purpose, and elegance. 
+                I build what matters, removing the rest."
+              </p>
+            </div>
+
+            {/* Minimal Description */}
+            <p className="hero-description text-lg text-muted-foreground/80 leading-relaxed max-w-md font-light hidden">
+              Building exceptional digital experiences with modern technology.
             </p>
 
-            {/* Enhanced CTA Buttons */}
-            <div className="hero-buttons flex flex-col sm:flex-row gap-6 pt-6">
+            {/* Clean CTAs
+            <div className="hero-buttons flex flex-col sm:flex-row gap-4 pt-4">
               <Button
                 size="lg"
-                className="group relative bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-primary-foreground px-10 py-6 text-lg rounded-2xl font-semibold shadow-xl hover:shadow-2xl transform-gpu hover:scale-105 transition-all duration-300 overflow-hidden"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <span className="relative z-10 flex items-center">
-                  View My Work
-                  <ExternalLink className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                View Work
               </Button>
 
               <Button
                 size="lg"
                 variant="outline"
-                className="group border-2 border-border hover:border-primary/50 bg-background/50 backdrop-blur-sm hover:bg-primary/5 px-10 py-6 text-lg rounded-2xl font-semibold shadow-lg hover:shadow-xl transform-gpu hover:scale-105 transition-all duration-300"
+                className="border-border hover:border-primary/50 hover:bg-primary/5 px-8 py-4 rounded-2xl font-medium transform hover:scale-[1.02] transition-all duration-300"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <span className="flex items-center">
-                  Get In Touch
-                  <Mail className="ml-3 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                </span>
+                Contact
               </Button>
-            </div>
+            </div> */}
 
-            {/* Enhanced Social Links */}
-            <div className="hero-social flex items-center gap-8 pt-8">
-              <span className="text-sm text-muted-foreground font-medium tracking-wider uppercase">Connect</span>
-              <div className="h-px w-8 bg-gradient-to-r from-primary/50 to-transparent"></div>
+            {/* Minimal Social */}
+            <div className="hero-social flex items-center gap-6 pt-8">
               <div className="flex items-center gap-4">
                 <a
                   href="https://github.com/vedrakholia32"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-4 bg-secondary/30 hover:bg-primary/20 rounded-2xl transition-all duration-300 hover:scale-110 transform-gpu backdrop-blur-sm border border-border/50 hover:border-primary/30"
-                  aria-label="GitHub Profile"
+                  className="w-12 h-12 bg-secondary/30 hover:bg-primary/20 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                  aria-label="GitHub"
                 >
-                  <Github className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
                 <a
                   href="https://in.linkedin.com/in/ved-rakholia-760767275"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-4 bg-secondary/30 hover:bg-primary/20 rounded-2xl transition-all duration-300 hover:scale-110 transform-gpu backdrop-blur-sm border border-border/50 hover:border-primary/30"
-                  aria-label="LinkedIn Profile"
+                  className="w-12 h-12 bg-secondary/30 hover:bg-primary/20 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                  aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
                 <a
                   href="mailto:vedrakholia525@gmail.com"
-                  className="group p-4 bg-secondary/30 hover:bg-primary/20 rounded-2xl transition-all duration-300 hover:scale-110 transform-gpu backdrop-blur-sm border border-border/50 hover:border-primary/30"
-                  aria-label="Email Contact"
+                  className="w-12 h-12 bg-secondary/30 hover:bg-primary/20 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                  aria-label="Email"
                 >
-                  <Mail className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Mail className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Element - Completely Redesigned */}
-          <div className="relative lg:pl-12">
-            <div className="relative">
-              {/* Main Visual Container with Enhanced Aesthetics */}
-              <div className="relative w-full h-[500px] lg:h-[600px] bg-gradient-to-br from-primary/5 via-secondary/5 to-purple-500/5 rounded-[2rem] overflow-hidden border border-border/30 shadow-2xl backdrop-blur-sm">
-                
-                {/* Enhanced Floating Elements */}
-                <div ref={floatingElementsRef} className="absolute inset-0">
-                  
-                  {/* Premium Code Window */}
-                  <div className="floating-element absolute top-8 left-8 right-8 h-52 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-lg rounded-2xl border border-border/50 p-6 shadow-2xl z-20">
-                    {/* Window Controls */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 bg-red-500 rounded-full shadow-lg"></div>
-                        <div className="w-4 h-4 bg-yellow-500 rounded-full shadow-lg"></div>
-                        <div className="w-4 h-4 bg-green-500 rounded-full shadow-lg"></div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground font-mono">hero-section.tsx</span>
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                      </div>
+          {/* Right Visual - Clean & Modern */}
+          <div className="relative">
+            <div className="relative w-full h-[500px] lg:h-[600px] bg-gradient-to-br from-primary/3 to-secondary/5 rounded-[3rem] overflow-hidden border border-border/20">
+              
+              {/* Clean Code Window */}
+              <div ref={floatingElementsRef} className="absolute inset-0">
+                <div className="floating-element absolute top-12 left-12 right-12 h-48 bg-background/95 backdrop-blur-xl rounded-3xl border border-border/30 p-8 shadow-2xl">
+                  {/* Minimal Window Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    
-                    {/* Enhanced Code Content */}
-                    <div className="space-y-3 text-sm font-mono leading-relaxed">
-                      <div className="flex items-start gap-3">
-                        <span className="text-muted-foreground/50 text-xs mt-1">1</span>
-                        <div>
-                          <span className="text-blue-400">const</span>{" "}
-                          <span className="text-yellow-300">developer</span>{" "}
-                          <span className="text-muted-foreground">=</span>{" "}
-                          <span className="text-muted-foreground">{`{`}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <span className="text-muted-foreground/50 text-xs mt-1">2</span>
-                        <div className="pl-4">
-                          <span className="text-emerald-400">name</span>
-                          <span className="text-muted-foreground">:</span>{" "}
-                          <span className="text-orange-300">"Ved Rakholia"</span>
-                          <span className="text-muted-foreground">,</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <span className="text-muted-foreground/50 text-xs mt-1">3</span>
-                        <div className="pl-4">
-                          <span className="text-emerald-400">skills</span>
-                          <span className="text-muted-foreground">:</span>{" "}
-                          <span className="text-purple-400">["React", "Next.js", "AI"]</span>
-                          <span className="text-muted-foreground">,</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <span className="text-muted-foreground/50 text-xs mt-1">4</span>
-                        <div className="pl-4">
-                          <span className="text-emerald-400">passion</span>
-                          <span className="text-muted-foreground">:</span>{" "}
-                          <span className="text-orange-300">"Building amazing things"</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <span className="text-muted-foreground/50 text-xs mt-1">5</span>
-                        <div>
-                          <span className="text-muted-foreground">{`};`}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Enhanced Tech Icons with Better Aesthetics */}
-                  <div className="floating-element absolute bottom-24 left-10 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-blue-500/30 shadow-lg z-10 hover:scale-110 transition-transform">
-                    <span className="text-2xl filter drop-shadow-lg">⚛️</span>
+                    <span className="text-xs text-muted-foreground font-mono">portfolio.tsx</span>
                   </div>
                   
-                  <div className="floating-element absolute bottom-24 left-32 w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-emerald-500/30 shadow-lg z-10 hover:scale-110 transition-transform">
-                    <span className="text-2xl filter drop-shadow-lg">🚀</span>
-                  </div>
-                  
-                  <div className="floating-element absolute bottom-24 right-32 w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-purple-500/30 shadow-lg z-10 hover:scale-110 transition-transform">
-                    <span className="text-2xl filter drop-shadow-lg">💡</span>
-                  </div>
-
-                  <div className="floating-element absolute bottom-24 right-10 w-16 h-16 bg-gradient-to-br from-orange-500/20 to-orange-600/30 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-orange-500/30 shadow-lg z-10 hover:scale-110 transition-transform">
-                    <span className="text-2xl filter drop-shadow-lg">🎯</span>
+                  {/* Clean Code */}
+                  <div className="space-y-3 text-sm font-mono">
+                    <div className="text-blue-400">const <span className="text-yellow-300">developer</span> = {`{`}</div>
+                    <div className="pl-4 text-emerald-400">name: <span className="text-orange-300">"Ved Rakholia"</span>,</div>
+                    <div className="pl-4 text-emerald-400">role: <span className="text-purple-400">"Full Stack"</span>,</div>
+                    <div className="pl-4 text-emerald-400">passion: <span className="text-orange-300">"Innovation"</span></div>
+                    <div className="text-blue-400">{`};`}</div>
                   </div>
                 </div>
 
-                {/* Enhanced Central Effects */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute top-1/3 left-1/3 w-20 h-20 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                {/* Minimal Tech Icons */}
+                <div className="floating-element absolute bottom-16 left-16 w-14 h-14 bg-blue-500/10 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-blue-500/20">
+                  <span className="text-xl">⚛️</span>
+                </div>
                 
-                {/* Enhanced Decorative Grid */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="w-full h-full" style={{
-                    backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-                    backgroundSize: '48px 48px'
-                  }}></div>
+                <div className="floating-element absolute bottom-16 left-36 w-14 h-14 bg-emerald-500/10 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-emerald-500/20">
+                  <span className="text-xl">⚡</span>
+                </div>
+                
+                <div className="floating-element absolute bottom-16 right-36 w-14 h-14 bg-purple-500/10 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-purple-500/20">
+                  <span className="text-xl">🎯</span>
+                </div>
+
+                <div className="floating-element absolute bottom-16 right-16 w-14 h-14 bg-orange-500/10 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-orange-500/20">
+                  <span className="text-xl">🚀</span>
                 </div>
               </div>
 
-              {/* Enhanced Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-primary/30 to-blue-500/30 rounded-2xl blur-lg animate-pulse"></div>
-              <div className="absolute -bottom-6 -left-6 w-8 h-8 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl blur-md animate-pulse delay-500"></div>
-              <div className="absolute top-1/4 -left-4 w-6 h-6 bg-gradient-to-br from-emerald-500/30 to-teal-500/30 rounded-lg blur-sm animate-pulse delay-1000"></div>
+              {/* Subtle Center Glow */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
             </div>
+
+            {/* Minimal Decorative Elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-2xl blur-sm"></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary/30 rounded-xl blur-sm"></div>
           </div>
 
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator */}
+      {/* Clean Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-8 h-12 border-2 border-primary/50 rounded-full flex justify-center backdrop-blur-sm bg-background/10 shadow-lg">
-          <div className="w-1.5 h-4 bg-gradient-to-b from-primary to-blue-500 rounded-full mt-2 animate-pulse"></div>
+        <div className="w-6 h-10 border border-primary/30 rounded-full flex justify-center bg-background/20 backdrop-blur-sm">
+          <div className="w-1 h-3 bg-primary rounded-full mt-2"></div>
         </div>
       </div>
     </section>
